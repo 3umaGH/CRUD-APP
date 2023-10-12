@@ -5,6 +5,7 @@ import Container from "@mui/material/Box";
 
 import DeleteIcon from "@mui/icons-material/Delete";
 import EditSharpIcon from "@mui/icons-material/EditSharp";
+
 import { OrdersContext } from "../contexts/OrdersContext";
 
 const OrderListAction = ({ order, openDetails}) => {
@@ -15,7 +16,7 @@ const OrderListAction = ({ order, openDetails}) => {
       <Button
         sx={{ m: 0.5 }}
         variant="contained"
-        color="success"
+        color="primary"
         size="small"
         startIcon={<EditSharpIcon style={{ marginLeft: 9 }} />}
         onClick={() => {

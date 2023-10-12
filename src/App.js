@@ -16,9 +16,10 @@ function App() {
   };
 
   const closeDetails = () => {
-    setViewingDetailsOrder(null);
     setOrderDetailsOpen(false);
   }
+
+  console.log('home re-rending')
 
   return (
     <OrdersContextProvider>
