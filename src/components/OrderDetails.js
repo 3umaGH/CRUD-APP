@@ -78,56 +78,6 @@ const OrderDetails = ({ order, isOpen, closeDetails }) => {
             );
           })}
 
-          {/*<TextField
-            required
-            sx={{ mt: 3, width: 1 }}
-            label="Order Number"
-            id="orderNo"
-            defaultValue={order.orderNo}
-            onChange={handleChange}
-          />
-
-          <TextField
-            required
-            sx={{ mt: 3, width: 1 }}
-            label="Date"
-            id="date"
-            defaultValue={order.date}
-            onChange={handleChange}
-          />
-          <TextField
-            required
-            sx={{ mt: 3, width: 1 }}
-            label="Customer"
-            id="customer"
-            defaultValue={order.customer}
-            onChange={handleChange}
-          />
-          <TextField
-            required
-            sx={{ mt: 3, width: 1 }}
-            label="Tracking Number"
-            id="trackingNo"
-            defaultValue={order.trackingNo}
-            onChange={handleChange}
-          />
-          <TextField
-            required
-            sx={{ mt: 3, width: 1 }}
-            label="Status"
-            id="status"
-            defaultValue={order.status}
-            onChange={handleChange}
-          />
-          <TextField
-            required
-            sx={{ mt: 3, width: 1 }}
-            label="Consignee"
-            id="consignee"
-            defaultValue={order.consignee}
-            onChange={handleChange}
-      />*/}
-
           <Button
             sx={{ m: 1, mt: 3 }}
             style={{

@@ -4,7 +4,7 @@ import OrdersList from "./components/OrdersList";
 import OrderDetails from "./components/OrderDetails";
 import OrdersContextProvider from "./contexts/OrdersContext";
 
-import Box from "@mui/material/Box";
+import Container from "@mui/material/Container";
 
 function App() {
   const [isOrderDetailsOpen, setOrderDetailsOpen] = useState(false);
@@ -17,16 +17,23 @@ function App() {
 
   const closeDetails = () => {
     setOrderDetailsOpen(false);
-  }
+  };
 
-  console.log('home re-rendering')
+  console.log("home re-rendering");
 
   return (
     <OrdersContextProvider>
-      <Box>
-        <OrderDetails isOpen={isOrderDetailsOpen} order={viewingDetailsOrder} closeDetails={closeDetails}/>  {/*Modal*/}
-        <OrdersList openDetails={openDetails}/>
-      </Box>
+     
+        <Container maxWidth="100%">
+          <OrderDetails
+            isOpen={isOrderDetailsOpen}
+            order={viewingDetailsOrder}
+            closeDetails={closeDetails}
+          />
+          {/*Modal*/}
+          <OrdersList openDetails={openDetails} />
+      </Container>
+
     </OrdersContextProvider>
   );
 }
