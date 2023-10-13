@@ -19,7 +19,7 @@ function App() {
     setOrderDetailsOpen(false);
   }
 
-  console.log('home re-rending')
+  console.log('home re-rendering')
 
   return (
     <OrdersContextProvider>

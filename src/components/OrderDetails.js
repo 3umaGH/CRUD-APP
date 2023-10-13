@@ -1,13 +1,14 @@
 import React, { useContext, useState, useEffect } from "react";
+
 import Box from "@mui/material/Box";
 import Modal from "@mui/material/Modal";
-import FormControl from "@mui/material/FormControl";
 import { Button } from "@mui/material";
-
 import Typography from "@mui/material/Typography";
 import TextField from "@mui/material/TextField";
 
 import { OrdersContext } from "../contexts/OrdersContext";
+
+import { getKeyTitle } from "../settings/ORDER_STRUCTURE";
 
 const style = {
   position: "absolute",
@@ -22,19 +23,18 @@ const style = {
 
 const OrderDetails = ({ order, isOpen, closeDetails }) => {
   const { dispatch } = useContext(OrdersContext);
-  const [inputValues, setInputValues] = useState(); // new order data
+  const [inputValues, setInputValues] = useState(); // New order data
 
   useEffect(() => {
+    // Using useEffect hook to set form data when component receives it.
     setInputValues(order);
   }, [order]);
 
-
   const handleSubmit = (e) => {
     e.preventDefault(); // Prevent browser default submit redirect
-    
-    dispatch({ type: "UPDATE_ORDER", order: order, newOrder: inputValues});
-    closeDetails();
 
+    dispatch({ type: "UPDATE_ORDER", order: order, newOrder: inputValues });
+    closeDetails();
   };
 
   const handleChange = ({ target }) => {
@@ -42,8 +42,6 @@ const OrderDetails = ({ order, isOpen, closeDetails }) => {
       ...inputValues,
       [target.id]: target.value,
     });
-
-    console.log(inputValues);
   };
 
   return (
@@ -64,7 +62,23 @@ const OrderDetails = ({ order, isOpen, closeDetails }) => {
             Shipment Details
           </Typography>
 
-          <TextField
+          {Object.keys(order).map((key) => {
+            const value = order[key];
+
+            return (
+              <TextField
+                key={key}
+                required
+                sx={{ mt: 3, width: 1 }}
+                label={getKeyTitle(key)}
+                id={key}
+                defaultValue={value}
+                onChange={handleChange}
+              />
+            );
+          })}
+
+          {/*<TextField
             required
             sx={{ mt: 3, width: 1 }}
             label="Order Number"
@@ -112,7 +126,7 @@ const OrderDetails = ({ order, isOpen, closeDetails }) => {
             id="consignee"
             defaultValue={order.consignee}
             onChange={handleChange}
-          />
+      />*/}
 
           <Button
             sx={{ m: 1, mt: 3 }}

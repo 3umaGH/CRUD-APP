@@ -3,18 +3,18 @@ import TableRow from "@mui/material/TableRow";
 
 import OrderListAction from "./OrderListAction";
 
-const OrderItem = ({order, index, openDetails,}) => {
-  
+const OrderItem = ({ order, index, openDetails }) => {
   return (
-    <TableRow key={index}>
-      <TableCell>{order.orderNo}</TableCell>
-      <TableCell>{order.date}</TableCell>
-      <TableCell>{order.customer}</TableCell>
-      <TableCell>{order.trackingNo}</TableCell>
-      <TableCell>{order.status}</TableCell>
-      <TableCell>{order.consignee}</TableCell>
+    <TableRow>
+      {Object.entries(order).map(([key, value]) => {
+        return <TableCell key={`orderItem_${key}`}>{value}</TableCell>;
+      })}
       <TableCell>
-        <OrderListAction order={order} index={index} openDetails={openDetails} />
+        <OrderListAction
+          order={order}
+          index={index}
+          openDetails={openDetails}
+        />
       </TableCell>
     </TableRow>
   );

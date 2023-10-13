@@ -8,29 +8,39 @@ import TableRow from "@mui/material/TableRow";
 import { OrdersContext } from "../contexts/OrdersContext";
 import OrderItem from "./OrderItem";
 
+import { getKeyTitle } from "../settings/ORDER_STRUCTURE";
+
 const OrdersList = ({ openDetails }) => {
   const { orders } = useContext(OrdersContext);
 
   return (
     <React.Fragment>
-      <Table size="small">
-        <TableHead>
-          <TableRow>
-            <TableCell>Order Number</TableCell>
-            <TableCell>Date</TableCell>
-            <TableCell>Customer</TableCell>
-            <TableCell>Tracking Number</TableCell>
-            <TableCell>Status</TableCell>
-            <TableCell>Consignee</TableCell>
-            <TableCell>Actions</TableCell>
-          </TableRow>
-        </TableHead>
-        <TableBody>
-          {orders.map((order, index) => (
-            <OrderItem key={index} order={order} openDetails={openDetails}/>
-          ))}
-        </TableBody>
-      </Table>
+      {orders.length > 0 && (
+        <Table size="small">
+          <TableHead>
+            <TableRow>
+              {Object.keys(orders[0]).map((key, index) => {
+                return (
+                  <TableCell key={`column_${key}`}>
+                    {getKeyTitle(key)}
+                  </TableCell>
+                );
+              })}
+              <TableCell>Actions</TableCell>
+              {/*For buttons*/}
+            </TableRow>
+          </TableHead>
+          <TableBody>
+            {orders.map((order, index) => (
+              <OrderItem
+                key={`row_${index}`}
+                order={order}
+                openDetails={openDetails}
+              />
+            ))}
+          </TableBody>
+        </Table>
+      )}
     </React.Fragment>
   );
 };

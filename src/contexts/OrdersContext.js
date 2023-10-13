@@ -10,12 +10,11 @@ const OrdersContextProvider = (props) => {
   useEffect(() => {
     //Fetch local data and use reducer to set contexts initial value
     dispatch({
-        type: "DATA_INIT",
-        data: {...LOCAL_DATA}
-    })
-    
+      type: "DATA_INIT",
+      data: { ...LOCAL_DATA },
+    });
   }, []);
-  
+
   return (
     <OrdersContext.Provider value={{ orders, dispatch }}>
       {props.children}
