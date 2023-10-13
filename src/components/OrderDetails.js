@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import Box from "@mui/material/Box";
 import Modal from "@mui/material/Modal";
 import FormControl from "@mui/material/FormControl";
@@ -22,14 +22,28 @@ const style = {
 
 const OrderDetails = ({ order, isOpen, closeDetails }) => {
   const { dispatch } = useContext(OrdersContext);
+  const [inputValues, setInputValues] = useState(); // new order data
+
+  useEffect(() => {
+    setInputValues(order);
+  }, [order]);
+
 
   const handleSubmit = (e) => {
     e.preventDefault(); // Prevent browser default submit redirect
+    
+    dispatch({ type: "UPDATE_ORDER", order: order, newOrder: inputValues});
+    closeDetails();
 
-    console.log("Submitted.");
-    {
-      /*TODO: Add update order logic*/
-    }
+  };
+
+  const handleChange = ({ target }) => {
+    setInputValues({
+      ...inputValues,
+      [target.id]: target.value,
+    });
+
+    console.log(inputValues);
   };
 
   return (
@@ -54,38 +68,50 @@ const OrderDetails = ({ order, isOpen, closeDetails }) => {
             required
             sx={{ mt: 3, width: 1 }}
             label="Order Number"
+            id="orderNo"
             defaultValue={order.orderNo}
+            onChange={handleChange}
           />
 
           <TextField
             required
             sx={{ mt: 3, width: 1 }}
             label="Date"
+            id="date"
             defaultValue={order.date}
+            onChange={handleChange}
           />
           <TextField
             required
             sx={{ mt: 3, width: 1 }}
             label="Customer"
+            id="customer"
             defaultValue={order.customer}
+            onChange={handleChange}
           />
           <TextField
             required
             sx={{ mt: 3, width: 1 }}
             label="Tracking Number"
+            id="trackingNo"
             defaultValue={order.trackingNo}
+            onChange={handleChange}
           />
           <TextField
             required
             sx={{ mt: 3, width: 1 }}
             label="Status"
+            id="status"
             defaultValue={order.status}
+            onChange={handleChange}
           />
           <TextField
             required
             sx={{ mt: 3, width: 1 }}
             label="Consignee"
+            id="consignee"
             defaultValue={order.consignee}
+            onChange={handleChange}
           />
 
           <Button

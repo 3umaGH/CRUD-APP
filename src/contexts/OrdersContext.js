@@ -13,9 +13,9 @@ const OrdersContextProvider = (props) => {
         type: "DATA_INIT",
         data: {...LOCAL_DATA}
     })
-
+    
   }, []);
-
+  
   return (
     <OrdersContext.Provider value={{ orders, dispatch }}>
       {props.children}
